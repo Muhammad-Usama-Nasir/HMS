@@ -50,6 +50,9 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	
+	
+	
 	private void doAuthenticate(String email, String password) {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
@@ -62,6 +65,10 @@ public class AuthController {
 
     }
 
+	
+	
+	
+	
     @ExceptionHandler(BadCredentialsException.class)
     public String exceptionHandler() {
         return "Credentials Invalid !!";
