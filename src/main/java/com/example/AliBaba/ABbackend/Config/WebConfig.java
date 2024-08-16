@@ -16,16 +16,17 @@ public class WebConfig {
 	// Creating In-Memory-User 
 	@Bean
 	public UserDetailsService userDetailsService() {
+		
 		UserDetails userDetails = User.builder().
 				username("usama@test.com").
 				password(passwordEncoder().encode("usama123")).
-				roles("Admin").
+				roles("ADMIN").
 				build();
 		
 		UserDetails adminDetails = User.builder()
 				.username("admin")
 				.password(passwordEncoder().encode("admin"))
-				.roles("admin")
+				.roles("ADMIN")
 				.build();
 		
 		return new InMemoryUserDetailsManager(userDetails, adminDetails);
