@@ -38,13 +38,14 @@ public class HomeController {
 		return principal.getName();
 	}
 	
+
 	
-	@PostMapping("/newUser")
-	public @ResponseBody ResponseEntity<ResponseStatus> saveNewUser(@RequestBody ORMSaveUser saveUser){
-		
-		ResponseStatus resp = homeService.saveNewUser(saveUser);
-		return new ResponseEntity<>(resp, HttpStatus.OK);
-	}
+//	@PostMapping("/create-user")
+//	public @ResponseBody ResponseEntity<ResponseStatus> saveNewUser(@RequestBody ORMSaveUser saveUser){
+//		
+//		ResponseStatus resp = homeService.saveNewUser(saveUser);
+//		return new ResponseEntity<>(resp, HttpStatus.OK);
+//	}
 	
 	@GetMapping("/findUser/{userId}")
 	public @ResponseBody ResponseEntity<ORMGetUser> findUser(@PathVariable (value = "userId") Long userId){

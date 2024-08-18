@@ -11,26 +11,31 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-public class WebConfig {
+public class MyConfig {
 
+	
 	// Creating In-Memory-User 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		
-		UserDetails userDetails = User.builder().
-				username("usama@test.com").
-				password(passwordEncoder().encode("usama123")).
-				roles("ADMIN").
-				build();
-		
-		UserDetails adminDetails = User.builder()
-				.username("admin")
-				.password(passwordEncoder().encode("admin"))
-				.roles("ADMIN")
-				.build();
-		
-		return new InMemoryUserDetailsManager(userDetails, adminDetails);
-	}
+	
+//	@Bean
+//	public UserDetailsService userDetailsService() {
+//		
+//		UserDetails userDetails = User.builder().
+//				username("usama@test.com").
+//				password(passwordEncoder().encode("usama123")).
+//				roles("ADMIN").
+//				build();
+//		
+//		UserDetails adminDetails = User.builder()
+//				.username("admin")
+//				.password(passwordEncoder().encode("admin"))
+//				.roles("ADMIN")
+//				.build();
+//		
+//		return new InMemoryUserDetailsManager(userDetails, adminDetails);
+//	}
+	
+	
+	
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
