@@ -2,17 +2,16 @@ package com.example.AliBaba.ABbackend.DAO;
 
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.example.AliBaba.ABbackend.ORM.ORMGetUser;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
-import com.example.AliBaba.ABbackend.ORM.SpParameters;
 import com.example.AliBaba.ABbackend.Repos.UserRepo;
 
 import jakarta.persistence.EntityManager;
@@ -29,7 +28,13 @@ public class HomeDaoImpl implements HomeDao {
 	@Autowired
 	private EntityManagerFactory emFactory;
 		
-	EntityManager manager = emFactory.createEntityManager();
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	private EntityManager getEntityManager() {
+        return emFactory.createEntityManager();
+    }
+
 	
 	@Override
 	public ResponseStatus saveNewUser(ORMSaveUser saveUser) {
@@ -39,11 +44,29 @@ public class HomeDaoImpl implements HomeDao {
 		String serverDateTime = LocalDateTime.now().toString();
 
 		saveUser.setModified_date(serverDateTime);
+		saveUser.setPassword(passwordEncoder.encode(saveUser.getPassword()));
 		userRepo.save(saveUser);
 		resp.setResponse("Data saved Successfully...");
-		resp.setResponseStatus(true);
+		resp.setStatus(true);
 		return resp;
 	}
+	
+	@Override
+	public ORMGetUser findUser(Long userId) {
+		
+		EntityManager manager = getEntityManager();
+
+		StoredProcedureQuery Sp = manager.createStoredProcedureQuery("spGetUserByUserId", ORMGetUser.class);
+		Sp.registerStoredProcedureParameter("userId", Long.class, ParameterMode.IN);
+		Sp.setParameter("userId", userId);
+		Sp.execute();
+		Sp.getSingleResult();
+		
+		ORMGetUser result = (ORMGetUser) Sp.getSingleResult();
+        return result;
+		
+	}
+	
 
 	@Override
 	public ResponseStatus updateUser(ORMSaveUser saveUser) {
@@ -56,34 +79,18 @@ public class HomeDaoImpl implements HomeDao {
 		if(user.isPresent() && saveUser != null) {
 			
 			saveUser.setModified_date(serverDateTime);
+			saveUser.setPassword(passwordEncoder.encode(saveUser.getPassword()));
 			userRepo.save(saveUser);
 			resp.setResponse("Data Updated Successfully...!!");
-			resp.setResponseStatus(true);
+			resp.setStatus(true);
 		}else{
 			resp.setResponse("Error Updating Data...!!");
-			resp.setResponseStatus(false);
+			resp.setStatus(false);
 		}
 		return resp;
 	}
 
-	@Override
-	public ORMGetUser findUser(Long userId) {
-		// TODO Auto-generated method stub
-		//List<ORMGetUser> resp = userRepo.findById(userId);
-		//List<SpParameters> ListOfUsers = new ArrayList<>();
-		//ListOfUsers.add(new SpParameters("userId", userId.toString(), String.class, ParameterMode.IN));
-		
-		// Call the stored procedure method from the repository
 
-		StoredProcedureQuery Sp = manager.createStoredProcedureQuery("spGetUserByUserId", ORMGetUser.class);
-		StoredProcedureQuery sp2 = manager.
-        ORMGetUser resp = userRepo.findUserByUserId(userId);
-
-        // Add additional logic if needed, and return the response as a List
-        return resp;
-		
-	}
-	
 	
 
 
