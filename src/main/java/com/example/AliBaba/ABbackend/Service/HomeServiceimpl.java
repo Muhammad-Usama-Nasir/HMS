@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.AliBaba.ABbackend.DAO.HomeDao;
+import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
+import com.example.AliBaba.ABbackend.ORM.ORMGetGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMGetUser;
+import com.example.AliBaba.ABbackend.ORM.ORMSaveGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
 
@@ -16,23 +19,32 @@ public class HomeServiceimpl implements HomeService{
 	@Autowired
 	private HomeDao homeDao;
 	
+
 	@Override
-	public ResponseStatus saveNewUser(ORMSaveUser saveUser) {
+	public ResponseStatus createNewGuest(ORMSaveGuest saveGuest) {
 		// TODO Auto-generated method stub
-		return homeDao.saveNewUser(saveUser);
+		return homeDao.createNewGuest(saveGuest);
 	}
 
 	@Override
-	public ResponseStatus updateUser(ORMSaveUser saveUser) {
+	public ORMGetGuest findGuest(Long guestId) {
 		// TODO Auto-generated method stub
-		return homeDao.updateUser(saveUser);
+		return homeDao.findGuest(guestId);
 	}
 
 	@Override
-	public ORMGetUser findUser(Long userId) {
+	public ResponseStatus updateGuest(ORMSaveGuest saveGuest) {
 		// TODO Auto-generated method stub
-		return homeDao.findUser(userId);
+		return homeDao.updateGuest(saveGuest);
 	}
+
+	@Override
+	public ResponseStatus createAdmin(ORMSaveUser saveUser) {
+		// TODO Auto-generated method stub
+		return homeDao.createAdmin(saveUser);
+	}
+
+
 
 
 

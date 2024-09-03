@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
+import com.example.AliBaba.ABbackend.ORM.ORMRoles;
+import com.example.AliBaba.ABbackend.ORM.ORMRoles;
 
 @Repository
-public interface UserRepo extends JpaRepository<ORMSaveUser, Long> {
+public interface RoleRepository extends JpaRepository<ORMRoles, Long> {
 
-	public Optional<ORMSaveUser> findByEmail(String email);
-
+	
 }
