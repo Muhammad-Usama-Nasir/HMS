@@ -1,17 +1,19 @@
 package com.example.AliBaba.ABbackend.Service;
 
-import java.util.List;
-
-import com.example.AliBaba.ABbackend.ORM.ORMGetUser;
+import com.example.AliBaba.ABbackend.ORM.ORMGetGuest;
+import com.example.AliBaba.ABbackend.ORM.ORMSaveGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
 
 public interface HomeService {
 
-	ResponseStatus saveNewUser(ORMSaveUser saveUser);
 
-	ResponseStatus updateUser(ORMSaveUser saveUser);
+	ResponseStatus createNewGuest(ORMSaveGuest saveGuest);
 
-	ORMGetUser findUser(Long userId);
+	ORMGetGuest findGuest(Long guestId);
+
+	ResponseStatus updateGuest(ORMSaveGuest saveGuest);
+
+	ResponseStatus createAdmin(ORMSaveUser saveUser);
 
 }

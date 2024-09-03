@@ -1,10 +1,5 @@
 package com.example.AliBaba.ABbackend.ORM;
 
-import java.util.Collection;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -14,30 +9,36 @@ public class ORMGetUser {
 
 	@Id
 	private Long user_id;	
-	
-	private String first_name ;
-	private String last_name;
+	private Long role_id;
+	private String role_name;
+	private String name ;
 	private String password ;
 	private String email;
 	private String contact_number; 
 	private String address ;
-	private String user_type  ;
 	private String registration_date ;
 	private String status;
 	
 	
 
-	public String getFirst_name() {
-		return first_name;
+
+	public Long getRole_id() {
+		return role_id;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setRole_id(Long role_id) {
+		this.role_id = role_id;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getRole_name() {
+		return role_name;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -71,12 +72,7 @@ public class ORMGetUser {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getUser_type() {
-		return user_type;
-	}
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
-	}
+
 	public String getRegistration_date() {
 		return registration_date;
 	}

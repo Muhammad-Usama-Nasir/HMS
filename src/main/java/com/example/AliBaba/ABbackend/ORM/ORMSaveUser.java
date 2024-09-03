@@ -1,24 +1,28 @@
 package com.example.AliBaba.ABbackend.ORM;
 
 import java.util.Collection;
-
+import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Builder;
 
 @Entity
 @Table(name = "Users")
 public class ORMSaveUser implements UserDetails{
-
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long user_id;	
+	private Long user_id;
+	private Long role_id;
 	
 	private String first_name ;
 	private String last_name;
@@ -26,7 +30,6 @@ public class ORMSaveUser implements UserDetails{
 	private String email;
 	private String contact_number; 
 	private String address ;
-	private String user_type  ;
 	private String registration_date ;
 	private String status;
    	private String created_date ; 
@@ -38,8 +41,8 @@ public class ORMSaveUser implements UserDetails{
    	private Boolean deleted;
    	private String system_ip;
    	
-   	
-   	
+   
+
    	
 	public String getEmail() {
 		return email;
@@ -73,12 +76,6 @@ public class ORMSaveUser implements UserDetails{
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getUser_type() {
-		return user_type;
-	}
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
 	}
 	public String getRegistration_date() {
 		return registration_date;
@@ -152,16 +149,27 @@ public class ORMSaveUser implements UserDetails{
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	
+	
+	public Long getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(Long role_id) {
+		this.role_id = role_id;
 	}
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return email;
 	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
    	
    	

@@ -42,6 +42,8 @@ public class AuthController {
 	
 	private Logger logger = LoggerFactory.getLogger(AuthController.class);
 	
+	
+	
 	@PostMapping("/login")
 	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request){
 		this.doAuthenticate(request.getEmail(), request.getPassword());
@@ -55,6 +57,10 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	
+	
+	
+	
 	private void doAuthenticate(String email, String password) {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
@@ -66,18 +72,24 @@ public class AuthController {
         }
     }
 
+	
+	
     @ExceptionHandler(BadCredentialsException.class)
     public String exceptionHandler() {
         return "Credentials Invalid !!";
     }
 	
-
-	@PostMapping("/signup")
-	public @ResponseBody ResponseEntity<ResponseStatus> saveNewUser(@RequestBody ORMSaveUser saveUser){
+    
+    
+    
+    @PostMapping("/signup")
+	public @ResponseBody ResponseEntity<ResponseStatus> createAdmin(@RequestBody ORMSaveUser saveUser){
 		
-		ResponseStatus resp = homeService.saveNewUser(saveUser);
+		ResponseStatus resp = homeService.createAdmin(saveUser);
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
+	
+	
 	
 	
 	

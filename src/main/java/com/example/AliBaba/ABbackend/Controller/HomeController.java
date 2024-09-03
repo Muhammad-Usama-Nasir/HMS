@@ -1,8 +1,6 @@
 package com.example.AliBaba.ABbackend.Controller;
 
 import java.security.Principal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
+import com.example.AliBaba.ABbackend.ORM.ORMGetGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMGetUser;
+import com.example.AliBaba.ABbackend.ORM.ORMSaveGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
 import com.example.AliBaba.ABbackend.Service.HomeService;
@@ -38,29 +39,36 @@ public class HomeController {
 		return principal.getName();
 	}
 	
-
 	
-//	@PostMapping("/create-user")
-//	public @ResponseBody ResponseEntity<ResponseStatus> saveNewUser(@RequestBody ORMSaveUser saveUser){
-//		
-//		ResponseStatus resp = homeService.saveNewUser(saveUser);
-//		return new ResponseEntity<>(resp, HttpStatus.OK);
-//	}
-	
-	@GetMapping("/findUser/{userId}")
-	public @ResponseBody ResponseEntity<ORMGetUser> findUser(@PathVariable (value = "userId") Long userId){
-		
-		ORMGetUser user = homeService.findUser(userId);
-		
-		return new ResponseEntity<ORMGetUser>(user, HttpStatus.OK);
-		
-		
-	}
+	//=======================================================================================================================
+	// creating Guests
 	
 	
-	@PutMapping("/updateUser")
-	public @ResponseBody ResponseEntity<ResponseStatus> updateUser(@RequestBody ORMSaveUser saveUser){
-		ResponseStatus resp = homeService.updateUser(saveUser);
+	@PostMapping("/createNewGuest")
+	public @ResponseBody ResponseEntity<ResponseStatus> createNewGuest(@RequestBody ORMSaveGuest saveGuest){
+		
+		ResponseStatus resp = homeService.createNewGuest(saveGuest);
 		return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("/findGuest/{guestId}")
+	public @ResponseBody ResponseEntity<ORMGetGuest> findGuest(@PathVariable (value = "guestId") Long guestId){
+		
+		ORMGetGuest resp = homeService.findGuest(guestId);
+		return new ResponseEntity<ORMGetGuest>(resp, HttpStatus.OK);
+	}
+	
+	
+	@PutMapping("/updateGuest")
+	public ResponseEntity<ResponseStatus> updateGuest(@RequestBody ORMSaveGuest saveGuest){
+		
+		ResponseStatus resp = homeService.updateGuest(saveGuest);
+		return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
 }
