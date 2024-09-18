@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
 import com.example.AliBaba.ABbackend.Service.BookingAndBillingService;
 
 @RestController
-@RequestMapping("/Home")
+@RequestMapping("/Home/TransactionalServices")
 public class BookingAndBillingController {
 
 	@Autowired
@@ -46,6 +48,14 @@ public class BookingAndBillingController {
 		ORMGetReservations resp = bookingAndBilingService.findReservation(reservationId);
 		return new ResponseEntity<ORMGetReservations>(resp, HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("/findReservationByHotelId/{hotelId}")
+	public @ResponseBody ResponseEntity<List<ORMGetReservations>> findReservationByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+		List<ORMGetReservations> resp = bookingAndBilingService.findReservationByHotelId(hotelId);
+		return new ResponseEntity<List<ORMGetReservations>>(resp, HttpStatus.OK);
+	}
+	
 	
 	
 	@PutMapping("/updateReservation")
@@ -81,6 +91,14 @@ public class BookingAndBillingController {
 			ORMGetPayment resp = bookingAndBilingService.findPayment(paymentId);
 			return new ResponseEntity<ORMGetPayment>(resp, HttpStatus.OK);
 		}
+		
+		
+		@GetMapping("/findPaymentsByHotelId/{hotelId}")
+		public @ResponseBody ResponseEntity<List<ORMGetPayment>> findPaymentsByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+			List<ORMGetPayment> resp = bookingAndBilingService.findPaymentsByHotelId(hotelId);
+			return new ResponseEntity<List<ORMGetPayment>>(resp, HttpStatus.OK);
+		}
+		
 		
 		
 		@PutMapping("/updatePayment")

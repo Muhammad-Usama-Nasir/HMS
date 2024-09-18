@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.Controller;
 
+import java.util.List;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
 import com.example.AliBaba.ABbackend.ORM.ORMGetHotel;
+import com.example.AliBaba.ABbackend.ORM.ORMGetService;
+import com.example.AliBaba.ABbackend.ORM.ORMGetServiceRequest;
 import com.example.AliBaba.ABbackend.ORM.ORMGetUser;
 import com.example.AliBaba.ABbackend.ORM.ORMHotel;
+import com.example.AliBaba.ABbackend.ORM.ORMSaveService;
+import com.example.AliBaba.ABbackend.ORM.ORMSaveServiceRequest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
 import com.example.AliBaba.ABbackend.Service.ManagementService;
@@ -46,6 +52,8 @@ public class ManagementController {
 		ORMGetHotel resp = managementService.getHotel(hotelId);
 		return new ResponseEntity<ORMGetHotel>(resp, HttpStatus.OK);
 	}
+	
+
 	
 	
 	@PutMapping("/updateHotel")
@@ -81,6 +89,13 @@ public class ManagementController {
 	}
 	
 	
+	@GetMapping("/getEmployeesByHotelId/{hotelId}")
+	public @ResponseBody ResponseEntity<List<ORMGetUser>> getEmployeesByHotel(@PathVariable (value = "hotelId") Long hotelId){
+		List<ORMGetUser> resp = managementService.getEmployeesByHotel(hotelId);
+		return new ResponseEntity<List<ORMGetUser>>(resp, HttpStatus.OK);
+	}
+	
+	
 	@PutMapping("/updateEmployee")
 	public @ResponseBody ResponseEntity<ResponseStatus> updateEmployee(@RequestBody ORMSaveUser employee){
 		ResponseStatus resp = managementService.updateEmployee(employee);
@@ -97,5 +112,80 @@ public class ManagementController {
 	
 	
 	
+	//==============================================================================================
+		// SERVICES
+		
+		
+		@PostMapping("/createService")
+		public @ResponseBody ResponseEntity<ResponseStatus> createService(@RequestBody ORMSaveService saveService){
+			ResponseStatus resp = managementService.createService(saveService);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
+		
+		
+		@GetMapping("/getService/{serviceId}")
+		public @ResponseBody ResponseEntity<ORMGetService> getService(@PathVariable (value = "serviceId") Long serviceId){
+			ORMGetService resp = managementService.getService(serviceId);
+			return new ResponseEntity<ORMGetService>(resp, HttpStatus.OK);
+		}
+		
+		
+		@GetMapping("/getServicesByHotelId/{hotelId}")
+		public @ResponseBody ResponseEntity<List<ORMGetService>> getServicesByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+			List<ORMGetService> resp = managementService.getServicesByHotelId(hotelId);
+			return new ResponseEntity<List<ORMGetService>>(resp, HttpStatus.OK);
+		}
+		
+		
+		@PutMapping("/updateService")
+		public @ResponseBody ResponseEntity<ResponseStatus> updateService(@RequestBody ORMSaveService saveService){
+			ResponseStatus resp = managementService.updateService(saveService);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
+		
+		
+		@DeleteMapping("/deleteServiceRecord")
+		public @ResponseBody ResponseEntity<ResponseStatus> deleteServiceRecord(@RequestBody ORMDeleteRecord deleteRecord){
+			ResponseStatus resp = managementService.deleteServiceRecord(deleteRecord);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
 	
+		
+		
+		//==============================================================================================
+		// SERVICES REQUESTS
+	
+		@PostMapping("/createServiceRequest")
+		public @ResponseBody ResponseEntity<ResponseStatus> createServiceRequest(@RequestBody ORMSaveServiceRequest saveServiceRequest){
+			ResponseStatus resp = managementService.createServiceRequest(saveServiceRequest);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
+		
+		
+		@GetMapping("/getServiceRequest/{serviceRequestId}")
+		public @ResponseBody ResponseEntity<ORMGetServiceRequest> getServiceRequest(@PathVariable (value = "serviceRequestId") Long serviceRequestId){
+			ORMGetServiceRequest resp = managementService.getServiceRequest(serviceRequestId);
+			return new ResponseEntity<ORMGetServiceRequest>(resp, HttpStatus.OK);
+		}
+		
+		
+		@GetMapping("/getServiceRequestsByHotelId/{hotelId}")
+		public @ResponseBody ResponseEntity<List<ORMGetServiceRequest>> getServiceRequestsByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+			List<ORMGetServiceRequest> resp = managementService.getServiceRequestsByHotelId(hotelId);
+			return new ResponseEntity<List<ORMGetServiceRequest>>(resp, HttpStatus.OK);
+		}
+		
+		
+		@PutMapping("/updateServiceRequest")
+		public @ResponseBody ResponseEntity<ResponseStatus> updateServiceRequest(@RequestBody ORMSaveServiceRequest saveServiceRequest){
+			ResponseStatus resp = managementService.updateServiceRequest(saveServiceRequest);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
+		
+		
+		@DeleteMapping("/deleteServiceRequestRecord")
+		public @ResponseBody ResponseEntity<ResponseStatus> deleteServiceRequestRecord(@RequestBody ORMDeleteRecord deleteRecord){
+			ResponseStatus resp = managementService.deleteServiceRequestRecord(deleteRecord);
+			return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+		}
 }

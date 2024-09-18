@@ -1,9 +1,12 @@
 package com.example.AliBaba.ABbackend.Controller;
 
 import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +63,15 @@ public class HomeController {
 	}
 	
 	
+	@GetMapping("/findGuestByHotelId/{hotelId}")
+	public @ResponseBody ResponseEntity<List<ORMGetGuest>> findGuestByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+		
+		List<ORMGetGuest> resp = homeService.findGuestByHotelId(hotelId);
+		return new ResponseEntity<List<ORMGetGuest>>(resp, HttpStatus.OK);
+	}
+	
+	
+	
 	@PutMapping("/updateGuest")
 	public ResponseEntity<ResponseStatus> updateGuest(@RequestBody ORMSaveGuest saveGuest){
 		
@@ -68,6 +80,11 @@ public class HomeController {
 	}
 	
 	
+	@DeleteMapping("/deleteGuestRecord")
+	public @ResponseBody ResponseEntity<ResponseStatus> deleteGuestRecord(@RequestBody ORMDeleteRecord deleteRecord){
+		ResponseStatus resp = homeService.deleteGuestRecord(deleteRecord);
+		return new ResponseEntity<ResponseStatus>(resp, HttpStatus.OK);
+	}
 	
 	
 	

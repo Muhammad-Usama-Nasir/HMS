@@ -7,20 +7,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rooms")
-public class ORMSaveRoom {
+@Table(name = "service")
+public class ORMSaveService {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long room_id;
-	
+	private Long service_id;
 	private Long hotel_id;
-	private Integer room_no;
-	private String room_type;
-	private String bed_type;
-	private Long price_per_night;
-	private String room_status;
-	private Integer floor_no;
+	
+	private String service_name;
+	private String service_description;
+	private Long service_price;
 	
 	private String created_date ; 
    	private String client_date_created ;
@@ -38,48 +35,29 @@ public class ORMSaveRoom {
 	public void setHotel_id(Long hotel_id) {
 		this.hotel_id = hotel_id;
 	}
-	public Long getRoom_id() {
-		return room_id;
+	public Long getService_id() {
+		return service_id;
 	}
-	public void setRoom_id(Long room_id) {
-		this.room_id = room_id;
+	public void setService_id(Long service_id) {
+		this.service_id = service_id;
 	}
-	public Integer getRoom_no() {
-		return room_no;
+	public String getService_name() {
+		return service_name;
 	}
-	public void setRoom_no(Integer room_no) {
-		this.room_no = room_no;
+	public void setService_name(String service_name) {
+		this.service_name = service_name;
 	}
-	public String getRoom_type() {
-		return room_type;
+	public String getService_description() {
+		return service_description;
 	}
-	public void setRoom_type(String room_type) {
-		this.room_type = room_type;
+	public void setService_description(String service_description) {
+		this.service_description = service_description;
 	}
-	public String getBed_type() {
-		return bed_type;
+	public Long getService_price() {
+		return service_price;
 	}
-	public void setBed_type(String bed_type) {
-		this.bed_type = bed_type;
-	}
-	public Long getPrice_per_night() {
-		return price_per_night;
-	}
-	public void setPrice_per_night(Long price_per_night) {
-		this.price_per_night = price_per_night;
-	}
-
-	public String getRoom_status() {
-		return room_status;
-	}
-	public void setRoom_status(String room_status) {
-		this.room_status = room_status;
-	}
-	public Integer getFloor_no() {
-		return floor_no;
-	}
-	public void setFloor_no(Integer floor_no) {
-		this.floor_no = floor_no;
+	public void setService_price(Long service_price) {
+		this.service_price = service_price;
 	}
 	public String getCreated_date() {
 		return created_date;
@@ -131,5 +109,4 @@ public class ORMSaveRoom {
 	}
    	
    	
-	
 }

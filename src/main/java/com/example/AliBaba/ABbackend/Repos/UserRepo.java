@@ -12,4 +12,6 @@ public interface UserRepo extends JpaRepository<ORMSaveUser, Long> {
 
 	public Optional<ORMSaveUser> findByEmail(String email);
 
+	public ORMSaveUser findByVerificationCode(String code);
+
 }

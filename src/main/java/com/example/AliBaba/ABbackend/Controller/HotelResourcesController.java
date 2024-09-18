@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
 import com.example.AliBaba.ABbackend.ORM.ORMGetHotel;
 import com.example.AliBaba.ABbackend.ORM.ORMGetRoom;
+import com.example.AliBaba.ABbackend.ORM.ORMGetService;
 import com.example.AliBaba.ABbackend.ORM.ORMHotel;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveRoom;
 import com.example.AliBaba.ABbackend.ORM.ResponseStatus;
@@ -47,6 +50,15 @@ public class HotelResourcesController {
 		ORMGetRoom resp = hotelResourcesService.findRoom(roomId);
 		return new ResponseEntity<ORMGetRoom>(resp, HttpStatus.OK);
 	}
+	
+	
+	
+	@GetMapping("/findRoomByHotelId/{hotelId}")
+	public @ResponseBody ResponseEntity<List<ORMGetRoom>> findRoomByHotelId(@PathVariable (value = "hotelId") Long hotelId){
+		List<ORMGetRoom> resp = hotelResourcesService.findRoomByHotelId(hotelId);
+		return new ResponseEntity<List<ORMGetRoom>>(resp, HttpStatus.OK);
+	}
+	
 	
 	
 	@PutMapping("/updateRoom")

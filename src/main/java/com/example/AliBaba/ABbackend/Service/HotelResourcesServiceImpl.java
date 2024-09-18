@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,12 @@ public class HotelResourcesServiceImpl implements HotelResourcesService{
 	public ResponseStatus deleteRecord(ORMDeleteRecord deleteRecord) {
 		// TODO Auto-generated method stub
 		return hotelResourcesDao.deleteRecord(deleteRecord);
+	}
+
+	@Override
+	public List<ORMGetRoom> findRoomByHotelId(Long hotelId) {
+		// TODO Auto-generated method stub
+		return hotelResourcesDao.findRoomByHotelId(hotelId);
 	}
 
 	

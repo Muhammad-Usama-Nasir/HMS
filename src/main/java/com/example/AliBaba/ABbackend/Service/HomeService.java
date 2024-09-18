@@ -1,5 +1,8 @@
 package com.example.AliBaba.ABbackend.Service;
 
+import java.util.List;
+
+import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
 import com.example.AliBaba.ABbackend.ORM.ORMGetGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveGuest;
 import com.example.AliBaba.ABbackend.ORM.ORMSaveUser;
@@ -15,5 +18,11 @@ public interface HomeService {
 	ResponseStatus updateGuest(ORMSaveGuest saveGuest);
 
 	ResponseStatus createAdmin(ORMSaveUser saveUser);
+
+	List<ORMGetGuest> findGuestByHotelId(Long hotelId);
+
+	ResponseStatus deleteGuestRecord(ORMDeleteRecord deleteRecord);
+
+	ResponseStatus verifyAccount(String code);
 
 }

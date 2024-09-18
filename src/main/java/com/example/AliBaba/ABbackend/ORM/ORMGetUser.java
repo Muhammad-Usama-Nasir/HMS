@@ -10,6 +10,7 @@ public class ORMGetUser {
 	@Id
 	private Long user_id;	
 	private Long role_id;
+	private Long hotel_id;
 	private String role_name;
 	private String name ;
 	private String password ;
@@ -22,6 +23,12 @@ public class ORMGetUser {
 	
 
 
+	public Long getHotel_id() {
+		return hotel_id;
+	}
+	public void setHotel_id(Long hotel_id) {
+		this.hotel_id = hotel_id;
+	}
 	public Long getRole_id() {
 		return role_id;
 	}

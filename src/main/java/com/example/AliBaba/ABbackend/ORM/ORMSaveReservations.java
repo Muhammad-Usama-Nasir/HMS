@@ -15,7 +15,6 @@ public class ORMSaveReservations {
 	private Long reservation_id;
 	
 	private Long hotel_id;
-	private Long user_id;
 	private Long guest_id;
 	private Long room_id;
 	
@@ -39,13 +38,6 @@ public class ORMSaveReservations {
    	
    	
    	
-   	
-	public Long getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
 	public Long getReservation_id() {
 		return reservation_id;
 	}

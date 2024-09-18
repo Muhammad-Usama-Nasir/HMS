@@ -42,7 +42,7 @@ public class SecurityConfig {
 		            .requestMatchers("Home/**").permitAll()
 		            .requestMatchers("/auth/signup").permitAll()
 		            .requestMatchers("/auth/login").permitAll()
-		            .anyRequest().permitAll()                        // Any other requests must be authenticated
+		            .anyRequest().permitAll()              // Any other requests must be authenticated
 		        )
 		        .exceptionHandling(ex -> ex.authenticationEntryPoint(point)) // Handle auth errors (**before sessionManagement**)
 		        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); 

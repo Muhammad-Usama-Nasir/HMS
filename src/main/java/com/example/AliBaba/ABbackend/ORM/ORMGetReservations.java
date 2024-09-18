@@ -1,11 +1,15 @@
 package com.example.AliBaba.ABbackend.ORM;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class ORMGetReservations {
 
+	@Id
 	private Long reservation_id;
 	
 	private Long hotel_id;
-	private Long user_id;
 	private Long guest_id;
 	private Long room_id;
 	
@@ -35,12 +39,7 @@ public class ORMGetReservations {
 	public void setHotel_id(Long hotel_id) {
 		this.hotel_id = hotel_id;
 	}
-	public Long getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
+
 	public Long getGuest_id() {
 		return guest_id;
 	}

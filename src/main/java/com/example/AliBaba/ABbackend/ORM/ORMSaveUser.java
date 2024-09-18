@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +27,11 @@ public class ORMSaveUser implements UserDetails{
 	
 	private String first_name ;
 	private String last_name;
-	private String password ;
+	private String password;
+	
+	@Column(unique = true, nullable = false)
 	private String email;
+	
 	private String contact_number; 
 	private String address ;
 	private String registration_date ;
@@ -41,9 +45,26 @@ public class ORMSaveUser implements UserDetails{
    	private Boolean deleted;
    	private String system_ip;
    	
-   
+   private String verificationCode;
+   private Boolean isVerified = false;
 
+   
+   
    	
+   
+	
+	public String getVerificationCode() {
+	return verificationCode;
+}
+public void setVerificationCode(String verificationCode) {
+	this.verificationCode = verificationCode;
+}
+public Boolean getIsVerified() {
+	return isVerified;
+}
+public void setIsVerified(Boolean isVerified) {
+	this.isVerified = isVerified;
+}
 	public String getEmail() {
 		return email;
 	}

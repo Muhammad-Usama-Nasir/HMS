@@ -44,6 +44,24 @@ public class HomeServiceimpl implements HomeService{
 		return homeDao.createAdmin(saveUser);
 	}
 
+	@Override
+	public List<ORMGetGuest> findGuestByHotelId(Long hotelId) {
+		// TODO Auto-generated method stub
+		return homeDao.findGuestByHotelId(hotelId);
+	}
+
+	@Override
+	public ResponseStatus deleteGuestRecord(ORMDeleteRecord deleteRecord) {
+		// TODO Auto-generated method stub
+		return homeDao.deleteGuestRecord(deleteRecord);
+	}
+
+	@Override
+	public ResponseStatus verifyAccount(String code) {
+		// TODO Auto-generated method stub
+		return homeDao.verifyAccount(code);
+	}
+
 
 
 

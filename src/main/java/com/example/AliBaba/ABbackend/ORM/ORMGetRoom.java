@@ -14,7 +14,7 @@ public class ORMGetRoom {
 	private String room_type;
 	private String bed_type;
 	private Long price_per_night;
-	private Boolean room_status;
+	private String room_status;
 	private Integer floor_no;
 	
 	
@@ -54,10 +54,10 @@ public class ORMGetRoom {
 	public void setPrice_per_night(Long price_per_night) {
 		this.price_per_night = price_per_night;
 	}
-	public Boolean getRoom_status() {
+	public String getRoom_status() {
 		return room_status;
 	}
-	public void setRoom_status(Boolean room_status) {
+	public void setRoom_status(String room_status) {
 		this.room_status = room_status;
 	}
 	public Integer getFloor_no() {

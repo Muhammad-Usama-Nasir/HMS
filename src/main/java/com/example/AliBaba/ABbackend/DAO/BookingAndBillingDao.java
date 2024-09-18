@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.DAO;
 
+import java.util.List;
+
 import com.example.AliBaba.ABbackend.ORM.ORMDeleteRecord;
 import com.example.AliBaba.ABbackend.ORM.ORMGetPayment;
 import com.example.AliBaba.ABbackend.ORM.ORMGetReservations;
@@ -24,6 +26,10 @@ public interface BookingAndBillingDao {
 	ResponseStatus updatePayment(ORMSavePayment savePayment);
 
 	ResponseStatus deletePaymentRecord(ORMDeleteRecord deleteRecord);
+
+	List<ORMGetReservations> findReservationByHotelId(Long hotelId);
+
+	List<ORMGetPayment> findPaymentsByHotelId(Long hotelId);
 
 
 }

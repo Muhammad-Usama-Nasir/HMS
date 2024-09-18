@@ -7,20 +7,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rooms")
-public class ORMSaveRoom {
+@Table(name = "service_requests")
+public class ORMSaveServiceRequest {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long room_id;
-	
-	private Long hotel_id;
-	private Integer room_no;
-	private String room_type;
-	private String bed_type;
-	private Long price_per_night;
-	private String room_status;
-	private Integer floor_no;
+	private Long service_request_id;
+	private Long service_id;
+	private Long reservation_id;
+	private String request_date;
+	private String request_status;
+	private Long total_amount;
 	
 	private String created_date ; 
    	private String client_date_created ;
@@ -32,54 +29,42 @@ public class ORMSaveRoom {
    	private String system_ip;
    	
    	
-	public Long getHotel_id() {
-		return hotel_id;
-	}
-	public void setHotel_id(Long hotel_id) {
-		this.hotel_id = hotel_id;
-	}
-	public Long getRoom_id() {
-		return room_id;
-	}
-	public void setRoom_id(Long room_id) {
-		this.room_id = room_id;
-	}
-	public Integer getRoom_no() {
-		return room_no;
-	}
-	public void setRoom_no(Integer room_no) {
-		this.room_no = room_no;
-	}
-	public String getRoom_type() {
-		return room_type;
-	}
-	public void setRoom_type(String room_type) {
-		this.room_type = room_type;
-	}
-	public String getBed_type() {
-		return bed_type;
-	}
-	public void setBed_type(String bed_type) {
-		this.bed_type = bed_type;
-	}
-	public Long getPrice_per_night() {
-		return price_per_night;
-	}
-	public void setPrice_per_night(Long price_per_night) {
-		this.price_per_night = price_per_night;
-	}
 
-	public String getRoom_status() {
-		return room_status;
+	public Long getService_request_id() {
+		return service_request_id;
 	}
-	public void setRoom_status(String room_status) {
-		this.room_status = room_status;
+	public void setService_request_id(Long service_request_id) {
+		this.service_request_id = service_request_id;
 	}
-	public Integer getFloor_no() {
-		return floor_no;
+	public Long getReservation_id() {
+		return reservation_id;
 	}
-	public void setFloor_no(Integer floor_no) {
-		this.floor_no = floor_no;
+	public void setReservation_id(Long reservation_id) {
+		this.reservation_id = reservation_id;
+	}
+	public Long getService_id() {
+		return service_id;
+	}
+	public void setService_id(Long service_id) {
+		this.service_id = service_id;
+	}
+	public String getRequest_date() {
+		return request_date;
+	}
+	public void setRequest_date(String request_date) {
+		this.request_date = request_date;
+	}
+	public String getRequest_status() {
+		return request_status;
+	}
+	public void setRequest_status(String request_status) {
+		this.request_status = request_status;
+	}
+	public Long getTotal_amount() {
+		return total_amount;
+	}
+	public void setTotal_amount(Long total_amount) {
+		this.total_amount = total_amount;
 	}
 	public String getCreated_date() {
 		return created_date;
@@ -131,5 +116,4 @@ public class ORMSaveRoom {
 	}
    	
    	
-	
 }

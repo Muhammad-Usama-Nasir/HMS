@@ -1,17 +1,18 @@
 package com.example.AliBaba.ABbackend.ORM;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+// import lombok.AllArgsConstructor;
+// import lombok.Builder;
+// import lombok.Getter;
+// import lombok.NoArgsConstructor;
+// import lombok.Setter;
+// import lombok.ToString;
 
-@Builder
-@Getter
-@Setter
+// @Builder
+// @Getter
+// @Setter
 public class JwtResponse {
 
+		
 	private String jwtToken;
 	private String username;
 

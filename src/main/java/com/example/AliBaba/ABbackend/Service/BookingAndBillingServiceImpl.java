@@ -1,5 +1,7 @@
 package com.example.AliBaba.ABbackend.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +65,18 @@ public class BookingAndBillingServiceImpl implements BookingAndBillingService{
 	public ResponseStatus deletePaymentRecord(ORMDeleteRecord deleteRecord) {
 		// TODO Auto-generated method stub
 		return bookingAndBillingDao.deletePaymentRecord(deleteRecord);
+	}
+
+	@Override
+	public List<ORMGetReservations> findReservationByHotelId(Long hotelId) {
+		// TODO Auto-generated method stub
+		return bookingAndBillingDao.findReservationByHotelId(hotelId);
+	}
+
+	@Override
+	public List<ORMGetPayment> findPaymentsByHotelId(Long hotelId) {
+		// TODO Auto-generated method stub
+		return bookingAndBillingDao.findPaymentsByHotelId(hotelId);
 	}
 
 }
